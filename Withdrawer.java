@@ -15,7 +15,7 @@ public class Withdrawer implements Runnable {
 	// read sharedLocation's value four times and sum the values
 	public void run() {
 		// Run threads indefinitely.
-		for (int i = 0; i < 300; i++) {
+		while (true) {
 			try {
 				// Get a random int of value 1-50.
 				int withdrawlAmount = 1 + generator.nextInt(50);

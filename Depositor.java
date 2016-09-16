@@ -14,7 +14,7 @@ public class Depositor implements Runnable {
 	
 	public void run() {
 		// Run threads indefinitely.
-		for (int i = 0; i < 100; i++) {
+		while (true) {
 			try
 			{
 				// Get a random int of value 1-200.
@@ -25,8 +25,8 @@ public class Depositor implements Runnable {
 				sharedSum.displayState(name + " deposited $" + Integer.toString(depositAmount), "", "Balance is $" + sharedSum.getSum());
 				// Unlock the withdrawal thread because money has been deposited.
 				sharedSum.unlockWithdrawalThread();
-				//  Sleep thread for 0 to .6 seconds
-				Thread.sleep(generator.nextInt(600)); 
+				//  Sleep thread for 0 to .9 seconds
+				Thread.sleep(generator.nextInt(900)); 
 			} // end try
 				// if sleeping thread interrupted, print stack trace
 			catch (InterruptedException exception) {

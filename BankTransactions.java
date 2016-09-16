@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 public class BankTransactions {
 	public static void main(String[] args) {
 		// create new thread pool with 12 threads
-		ExecutorService application = Executors.newFixedThreadPool(12);
+		ExecutorService application = Executors.newFixedThreadPool(9);
 
 		// create SynchronizedBuffer to store sum.
 		Sum sharedSum = new SynchronizedSum();
@@ -22,16 +22,13 @@ public class BankTransactions {
 
 		try // try to start Withdrawer and Depositor
 		{
+			application.execute(new Depositor(sharedSum,"Thread 1"));
 			application.execute(new Withdrawer(sharedSum, "Thread 1"));
 			application.execute(new Withdrawer(sharedSum, "Thread 2"));
 			application.execute(new Withdrawer(sharedSum, "Thread 3"));
 			application.execute(new Withdrawer(sharedSum, "Thread 4"));
 			application.execute(new Withdrawer(sharedSum, "Thread 5"));
 			application.execute(new Withdrawer(sharedSum, "Thread 6"));
-			application.execute(new Withdrawer(sharedSum, "Thread 7"));
-			application.execute(new Withdrawer(sharedSum, "Thread 8"));
-			application.execute(new Withdrawer(sharedSum, "Thread 9"));
-			application.execute(new Depositor(sharedSum,"Thread 1"));
 			application.execute(new Depositor(sharedSum,"Thread 2"));
 			application.execute(new Depositor(sharedSum,"Thread 3"));
 		} // end try
