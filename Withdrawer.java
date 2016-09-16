@@ -21,7 +21,7 @@ public class Withdrawer implements Runnable {
 				int withdrawlAmount = 1 + generator.nextInt(50);
 
 				// Check if there is enough money in the account to withdraw the random amount.
-				if ((sharedSum.getSum() - withdrawlAmount) > 0) {
+				if ((sharedSum.getSum() - withdrawlAmount) >= 0) {
 					// If there is enough, subtract the random amount from the shared sum.
 					sharedSum.decrementSum(withdrawlAmount);
 					// Print to console the name of the thread, how much it withdrew and the current shared balance.
